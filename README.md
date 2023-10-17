@@ -48,7 +48,7 @@ To use this library in your Android project, you can include it as a dependency 
 
 ```gradle
 dependencies {
-    implementation 'com.github.nikhiljainlive:blockies_android:-SNAPSHOT'
+    implementation 'com.github.nikhiljainlive:blockies_android:v1.0.0'
 }
 ```
 
