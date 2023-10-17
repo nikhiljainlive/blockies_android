@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".sample.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutInner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutInner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="BlockiesIdenticon XML"
+        android:textColor="@color/black" />
+
+    <com.nikhiljain.blockiesview.BlockiesIconView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:seed="0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359"
+        app:size="10" />
+</LinearLayout>
