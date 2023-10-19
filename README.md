@@ -71,7 +71,7 @@ To use this library in your Android project, you can include it as a dependency 
 
 ```gradle
 dependencies {
-    implementation 'com.github.nikhiljainlive:blockies_android:v1.0.0'
+    implementation 'com.github.nikhiljainlive:blockies_android:v0.1.1'
 }
 ```
 
