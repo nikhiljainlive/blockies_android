@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nikhiljain.blockiesgenerator.databinding.ListItemBlockiesGeneratorBinding
 import com.nikhiljain.blockiesgenerator.databinding.ListItemBlockiesViewBinding
 import com.nikhiljain.blockiesgenerator.sample.blockiesgenerator.BlockiesGeneratorViewHolder
+import com.nikhiljain.blockiesgenerator.sample.blockiesglide.BlockiesGlideViewHolder
 import com.nikhiljain.blockiesgenerator.sample.blockiesview.BlockiesViewHolder
 
 class BlockiesViewsAdapter private constructor(
@@ -15,7 +16,7 @@ class BlockiesViewsAdapter private constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBlockiesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return when(viewType) {
+        return when (viewType) {
             VIEWHOLDER_TYPE_BLOCKIES_VIEW -> BlockiesViewHolder(
                 ListItemBlockiesViewBinding.inflate(
                     inflater,
@@ -25,6 +26,14 @@ class BlockiesViewsAdapter private constructor(
             )
 
             VIEWHOLDER_TYPE_BLOCKIES_GENERATOR -> BlockiesGeneratorViewHolder(
+                ListItemBlockiesGeneratorBinding.inflate(
+                    inflater,
+                    parent,
+                    false
+                )
+            )
+
+            VIEWHOLDER_TYPE_BLOCKIES_GLIDE -> BlockiesGlideViewHolder(
                 ListItemBlockiesGeneratorBinding.inflate(
                     inflater,
                     parent,
@@ -49,6 +58,7 @@ class BlockiesViewsAdapter private constructor(
     companion object {
         private const val VIEWHOLDER_TYPE_BLOCKIES_VIEW = 1
         private const val VIEWHOLDER_TYPE_BLOCKIES_GENERATOR = 2
+        private const val VIEWHOLDER_TYPE_BLOCKIES_GLIDE = 3
 
         fun getAdapterForBlockiesView(blockiesData: List<BlockiesViewsData>): BlockiesViewsAdapter {
             return BlockiesViewsAdapter(blockiesData, VIEWHOLDER_TYPE_BLOCKIES_VIEW)
@@ -56,6 +66,10 @@ class BlockiesViewsAdapter private constructor(
 
         fun getAdapterForBlockiesGenerator(blockiesData: List<BlockiesViewsData>): BlockiesViewsAdapter {
             return BlockiesViewsAdapter(blockiesData, VIEWHOLDER_TYPE_BLOCKIES_GENERATOR)
+        }
+
+        fun getAdapterForBlockiesGlide(blockiesData: List<BlockiesViewsData>): BlockiesViewsAdapter {
+            return BlockiesViewsAdapter(blockiesData, VIEWHOLDER_TYPE_BLOCKIES_GLIDE)
         }
     }
 }

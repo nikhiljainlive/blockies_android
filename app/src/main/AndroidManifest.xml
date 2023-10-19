@@ -13,10 +13,23 @@
         android:theme="@style/Theme.BlockiesGenerator"
         tools:targetApi="31">
         <activity
+            android:name="com.nikhiljain.blockiesgenerator.sample.blockiesglide.BlockiesGlideViewsActivity"
+            android:exported="true"
+            android:label="Blockies Glide"
+            android:launchMode="singleTask"
+            android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name="com.nikhiljain.blockiesgenerator.sample.blockiesgenerator.BlockiesGeneratorViewsActivity"
             android:exported="true"
-            android:launchMode="singleTask"
             android:label="Blockies Generator"
+            android:launchMode="singleTask"
             android:taskAffinity="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

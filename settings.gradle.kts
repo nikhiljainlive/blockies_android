@@ -17,3 +17,4 @@ rootProject.name = "BlockiesGenerator"
 include(":app")
 include(":blockiesview")
 include(":blockiesgenerator")
+include(":blockiesglide")

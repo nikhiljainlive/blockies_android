@@ -31,7 +31,7 @@ val imageView = ImageView(this)
 imageView.layoutParams = ViewGroup.LayoutParams(100, 100)
 
 // Create a BlockiesIconGenerator instance
-val iconGenerator = BlockiesIconGenerator(seed = it, size = 10, scale = 10)
+val iconGenerator = BlockiesIconGenerator(seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359", size = 10, scale = 10)
 
 // Generate the blockies icon bitmap
 val blockiesIconBitmap = iconGenerator.generateIconBitmap()
@@ -40,7 +40,30 @@ val blockiesIconBitmap = iconGenerator.generateIconBitmap()
 imageView.setImageBitmap(blockiesIconBitmap)
 ```
 
-The above code sample generates a 100 x 100-pixel bitmap.
+### 3. blockiesglide
+
+The `blockiesglide` module requires [Glide](https://github.com/bumptech/glide) library as dependency. This module injects `BlockiesGlideModule` custom Glide module and loads the bitmap image from the `BlockiesIconData` object.
+
+#### Usage
+
+```kotlin
+val imageView = ImageView(this)
+imageView.layoutParams = ViewGroup.LayoutParams(100, 100)
+Glide.with(imageView)
+    .load(
+        BlockiesIconData(
+            seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359",
+            size = 10,
+            scale = 10
+        )
+    )
+    .placeholder(R.drawable.ic_launcher_foreground)
+    .transform(RoundedCorners(90))
+    .into(imageView)
+
+```
+
+The above code sample loads the bitmap from the BlockiesIconData object with the help of Glide library.
 
 ## Getting Started
 
@@ -52,7 +75,7 @@ dependencies {
 }
 ```
 
-And, in root `build.gradle`
+And, in root project directory `build.gradle`:
 
 ```gradle
 dependencyResolutionManagement {
