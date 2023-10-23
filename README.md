@@ -71,7 +71,14 @@ To use this library in your Android project, you can include it as a dependency 
 
 ```gradle
 dependencies {
-    implementation 'com.github.nikhiljainlive:blockies_android:v0.1.1'
+    // BlockiesView dependency
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.1.3'
+
+    // BlockiesGenerator dependency
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.1.3'
+
+    // BlockiesGlide dependency
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.1.3'
 }
 ```
 
