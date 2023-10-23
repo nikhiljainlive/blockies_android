@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("maven-publish")
     id("org.jetbrains.kotlin.android")
 }
 
@@ -37,4 +38,18 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            register("mavenJava", MavenPublication::class) {
+                groupId = "com.github.nikhiljainlive.blockies_android"
+                artifactId = "blockiesgenerator"
+                version = "v0.1.2"
+
+                from(components["release"])
+            }
+        }
+    }
 }

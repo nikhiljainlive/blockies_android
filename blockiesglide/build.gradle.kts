@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("maven-publish")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 }
@@ -45,4 +46,18 @@ dependencies {
     // glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            register("mavenJava", MavenPublication::class) {
+                groupId = "com.github.nikhiljainlive.blockies_android"
+                artifactId = "blockiesglide"
+                version = "v0.1.2"
+
+                from(components["release"])
+            }
+        }
+    }
 }
