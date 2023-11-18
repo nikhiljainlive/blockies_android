@@ -7,7 +7,12 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.signature.ObjectKey
 import com.nikhiljain.blockiesglide.entity.BlockiesIconData
 
-class BlockiesModelLoader : ModelLoader<BlockiesIconData, BlockiesIconData> {
+/**
+ * @author Nikhil Jain
+ * <br>
+ * [BlockiesIconModelLoader] class to load BlockiesData
+ * */
+class BlockiesIconModelLoader : ModelLoader<BlockiesIconData, BlockiesIconData> {
 
     override fun buildLoadData(
         model: BlockiesIconData,
@@ -15,7 +20,7 @@ class BlockiesModelLoader : ModelLoader<BlockiesIconData, BlockiesIconData> {
         height: Int,
         options: Options
     ): ModelLoader.LoadData<BlockiesIconData> {
-        return ModelLoader.LoadData(ObjectKey(model), BlockiesDataFetcher(model))
+        return ModelLoader.LoadData(ObjectKey(model), BlockiesIconDataFetcher(model))
     }
 
     override fun handles(model: BlockiesIconData): Boolean {
@@ -25,7 +30,7 @@ class BlockiesModelLoader : ModelLoader<BlockiesIconData, BlockiesIconData> {
     class Factory : ModelLoaderFactory<BlockiesIconData, BlockiesIconData> {
 
         override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<BlockiesIconData, BlockiesIconData> =
-            BlockiesModelLoader()
+            BlockiesIconModelLoader()
 
         override fun teardown() {
             // Do nothing.

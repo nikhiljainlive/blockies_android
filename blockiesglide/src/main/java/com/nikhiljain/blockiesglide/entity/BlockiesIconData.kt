@@ -7,19 +7,37 @@ import kotlin.math.ceil
 import kotlin.math.floor
 
 /**
- * Class that encapsulates the preudo-random generation of block data and colors
+ * @author Nikhil Jain
+ *
+ * @param seed The seed to be used for this Blockies icon.
+ * @param size The number of blocks per side for this image. Defaults to 8.
+ * @param color The foreground color. Defaults to color generated for seed if not provided.
+ * @param bgColor The background color. Defaults to color generated for seed if not provided.
+ * @param spotColor A color which forms mouths and eyes. Defaults to color generated for seed if not provided.
+ *
+ * <br>
+ * Example Usage :
+ *
+ *  ```
+ *  Glide.with(imageView.context).load(
+ *      BlockiesIconData(seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359")
+ *  ).into(imageView)
+ *  ```
+ *  or,
+ *  ```
+ *  Glide.with(imageView.context).load(
+ *      BlockiesIconData(seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359", size = 8)
+ *  ).into(imageView)
+ *  ```
  */
 class BlockiesIconData(
     private val seed: String,
     private val size: Int = DEFAULT_SIZE,
-    scale: Int = DEFAULT_SCALE,
     @ColorInt var color: Int = 0,
     @ColorInt var bgColor: Int = 0,
     @ColorInt var spotColor: Int = 0
 ) {
     private val randSeed: IntArray = intArrayOf(0, 0, 0, 0)
-
-    val width = size * scale
 
     /**
      * Retrieves the generated image data
@@ -28,7 +46,7 @@ class BlockiesIconData(
     lateinit var imageData: IntArray
         private set
 
-    init {
+    fun initialize() {
         seedRand(seed)
         createIcon(size)
     }
@@ -134,6 +152,5 @@ class BlockiesIconData(
 
     companion object {
         const val DEFAULT_SIZE = 10
-        const val DEFAULT_SCALE = 10
     }
 }

@@ -5,9 +5,20 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.data.DataFetcher
 import com.nikhiljain.blockiesglide.entity.BlockiesIconData
 
-class BlockiesDataFetcher(private val blockiesData: BlockiesIconData) : DataFetcher<BlockiesIconData> {
+/**
+ * @author Nikhil Jain
+ * <br>
+ * [BlockiesIconDataFetcher] class to initialize and fetch Blockies Data
+ */
+class BlockiesIconDataFetcher(
+    private val blockiesData: BlockiesIconData
+) : DataFetcher<BlockiesIconData> {
 
-    override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in BlockiesIconData>) {
+    override fun loadData(
+        priority: Priority,
+        callback: DataFetcher.DataCallback<in BlockiesIconData>
+    ) {
+        blockiesData.initialize()
         callback.onDataReady(blockiesData)
     }
 

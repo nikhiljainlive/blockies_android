@@ -14,10 +14,17 @@ import com.bumptech.glide.load.resource.bitmap.BitmapResource
 import com.bumptech.glide.load.resource.bitmap.LazyBitmapDrawableResource
 import com.nikhiljain.blockiesglide.entity.BlockiesIconData
 import kotlin.math.floor
+import kotlin.math.min
 import kotlin.math.sqrt
 
-class BlockiesDecoder(private var context: Context, private val bitmapPool: BitmapPool) :
-    ResourceDecoder<BlockiesIconData, BitmapDrawable> {
+/**
+ * @author Nikhil Jain
+ * <br>
+ * [BlockiesIconDecoder] class to generate blockies bitmap icon
+ */
+class BlockiesIconDecoder(
+    private var context: Context, private val bitmapPool: BitmapPool
+) : ResourceDecoder<BlockiesIconData, BitmapDrawable> {
 
     override fun handles(source: BlockiesIconData, options: Options): Boolean {
         return true
@@ -29,36 +36,36 @@ class BlockiesDecoder(private var context: Context, private val bitmapPool: Bitm
         height: Int,
         options: Options
     ): Resource<BitmapDrawable>? {
-        val bitmap = generateBitmap(source, source.width, source.width, options)
+        val bitmap = bitmapPool.get(width, height, Bitmap.Config.ARGB_8888).also {
+            it.drawBlockiesIcon(source, width, height)
+        }
         val bitmapResource = BitmapResource.obtain(bitmap, bitmapPool)
-        return LazyBitmapDrawableResource.obtain(
-            context.resources,
-            bitmapPool,
-            bitmapResource!!.get()
-        )
+        return LazyBitmapDrawableResource.obtain(context.resources, bitmapResource)
     }
 
-    @Suppress("UNUSED_PARAMETER")
-    private fun generateBitmap(
-        source: BlockiesIconData,
-        width: Int,
-        height: Int,
-        options: Options?
+    private fun Bitmap.drawBlockiesIcon(
+        blockiesData: BlockiesIconData,
+        bitmapWidth: Int,
+        bitmapHeight: Int
     ): Bitmap {
-        val bitmap = Bitmap.createBitmap(source.width, source.width, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        drawBackgroundRect(canvas, source)
-        drawBlocks(canvas, source)
-        return bitmap//scaleBitmap(bitmap, width, height)
+        val canvas = Canvas(this)
+        drawBackgroundRect(canvas, blockiesData, bitmapWidth, bitmapHeight)
+        drawBlocks(canvas, blockiesData, bitmapWidth, bitmapHeight)
+        return this
     }
 
-    private fun drawBackgroundRect(canvas: Canvas, blockiesData: BlockiesIconData) {
+    private fun drawBackgroundRect(
+        canvas: Canvas,
+        blockiesData: BlockiesIconData,
+        bitmapWidth: Int,
+        bitmapHeight: Int
+    ) {
         val backgroundRect = RectF().also {
             it.set(
                 /* left = */ 0f,
                 /* top = */ 0f,
-                /* right = */ blockiesData.width.toFloat(),
-                /* bottom = */ blockiesData.width.toFloat()
+                /* right = */ bitmapWidth.toFloat(),
+                /* bottom = */ bitmapHeight.toFloat()
             )
         }
         val backgroundPaint = Paint().also {
@@ -69,10 +76,15 @@ class BlockiesDecoder(private var context: Context, private val bitmapPool: Bitm
         canvas.drawRect(backgroundRect, backgroundPaint)
     }
 
-    private fun drawBlocks(canvas: Canvas, blockiesData: BlockiesIconData) {
-        val width = blockiesData.width
+    private fun drawBlocks(
+        canvas: Canvas,
+        blockiesData: BlockiesIconData,
+        bitmapWidth: Int,
+        bitmapHeight: Int
+    ) {
+        val bitmapSize = min(bitmapWidth, bitmapHeight)
         val imageData = blockiesData.imageData
-        val blockSize = width / sqrt(imageData.size.toDouble())
+        val blockSize = bitmapSize / sqrt(imageData.size.toDouble())
         val colorPaint = Paint().also {
             it.style = Paint.Style.FILL
             it.color = blockiesData.color
@@ -82,8 +94,8 @@ class BlockiesDecoder(private var context: Context, private val bitmapPool: Bitm
             it.color = blockiesData.spotColor
         }
         for (i in imageData.indices) {
-            val x = blockSize * i % width
-            val y = floor(blockSize * i / width) * blockSize
+            val x = blockSize * i % bitmapSize
+            val y = floor(blockSize * i / bitmapSize) * blockSize
             val rect = RectF(
                 x.toFloat(),
                 y.toFloat(),
@@ -99,4 +111,3 @@ class BlockiesDecoder(private var context: Context, private val bitmapPool: Bitm
         }
     }
 }
-

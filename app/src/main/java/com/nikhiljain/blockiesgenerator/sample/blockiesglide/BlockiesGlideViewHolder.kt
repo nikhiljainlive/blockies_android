@@ -17,7 +17,6 @@ class BlockiesGlideViewHolder(
             val blockiesData = BlockiesIconData(
                 seed = blockiesViewsData.address,
                 size = 10,
-                scale = 10,
                 color = itemView.context.getColor(blockiesViewsData.color),
                 bgColor = itemView.context.getColor(blockiesViewsData.bgColor),
                 spotColor = itemView.context.getColor(blockiesViewsData.spotColor)
