@@ -1,7 +1,7 @@
 package com.nikhiljain.blockiesview
 
+import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
-import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.floor
@@ -9,7 +9,13 @@ import kotlin.math.floor
 /**
  * Class that encapsulates the preudo-random generation of block data and colors
  */
-class BlockiesIconData(seed: String, size: Int) {
+class BlockiesIconData(
+    private val seed: String,
+    private val size: Int = DEFAULT_SIZE,
+    @ColorInt var color: Int = 0,
+    @ColorInt var bgColor: Int = 0,
+    @ColorInt var spotColor: Int = 0
+) {
     private val randSeed: IntArray = intArrayOf(0, 0, 0, 0)
 
     /**
@@ -18,13 +24,9 @@ class BlockiesIconData(seed: String, size: Int) {
      */
     lateinit var imageData: IntArray
         private set
-    private val seed: String = seed.lowercase(Locale.getDefault())
-    private var color = 0
-    private var bgColor = 0
-    private var spotColor = 0
 
     init {
-        seedRand(this.seed)
+        seedRand(seed)
         createIcon(size)
     }
 
@@ -36,9 +38,15 @@ class BlockiesIconData(seed: String, size: Int) {
     }
 
     private fun createIcon(size: Int) {
-        color = createColor()
-        bgColor = createColor()
-        spotColor = createColor()
+        if (color.isColorInvalid) {
+            color = createColor()
+        }
+        if (bgColor.isColorInvalid) {
+            bgColor = createColor()
+        }
+        if (spotColor.isColorInvalid) {
+            spotColor = createColor()
+        }
         imageData = createImageData(size)
     }
 
@@ -94,19 +102,32 @@ class BlockiesIconData(seed: String, size: Int) {
         return ret
     }
 
-    val colors: IntArray
-        /**
-         * Gets the generated colors in the form of an array of integers.
-         * These are:
-         *
-         *
-         * [0] color
-         * [1] background color
-         * [2] spot color
-         *
-         * @return
-         */
-        get() = intArrayOf(color, bgColor, spotColor)
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as BlockiesIconData
+
+        if (seed != other.seed) return false
+        if (size != other.size) return false
+        if (color != other.color) return false
+        if (bgColor != other.bgColor) return false
+        if (spotColor != other.spotColor) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = seed.hashCode()
+        result = 31 * result + size
+        result = 31 * result + color
+        result = 31 * result + bgColor
+        result = 31 * result + spotColor
+        return result
+    }
+
+    private val @receiver:ColorInt Int.isColorInvalid: Boolean
+        get() = this == 0
 
     companion object {
         const val DEFAULT_SIZE = 10

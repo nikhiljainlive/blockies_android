@@ -46,26 +46,37 @@ class BlockiesIconView : View {
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        val a = context.theme.obtainStyledAttributes(attrs, R.styleable.BlockiesIdenticon, 0, 0)
+        val a = context.theme.obtainStyledAttributes(attrs, R.styleable.BlockiesIconView, 0, 0)
         val seed: String
+        val color: Int
+        val bgColor: Int
+        val spotColor: Int
         try {
-            cornerRadius = a.getDimension(R.styleable.BlockiesIdenticon_radius, DEFAULT_RADIUS)
+            cornerRadius = a.getDimension(R.styleable.BlockiesIconView_radius, DEFAULT_RADIUS)
             blockiesDataSize = a.getInt(
-                R.styleable.BlockiesIdenticon_size, BlockiesIconData.DEFAULT_SIZE
+                R.styleable.BlockiesIconView_size, BlockiesIconData.DEFAULT_SIZE
             )
-            seed = a.getString(R.styleable.BlockiesIdenticon_seed).orEmpty()
+            seed = a.getString(R.styleable.BlockiesIconView_seed).orEmpty()
+            color = a.getColor(R.styleable.BlockiesIconView_color, 0)
+            bgColor = a.getColor(R.styleable.BlockiesIconView_bgColor, 0)
+            spotColor = a.getColor(R.styleable.BlockiesIconView_spotColor, 0)
         } finally {
             a.recycle()
         }
-        blockiesData = BlockiesIconData(seed, blockiesDataSize)
+        blockiesData = BlockiesIconData(
+            seed = seed,
+            size = blockiesDataSize,
+            color = color,
+            bgColor = bgColor,
+            spotColor = spotColor
+        )
         init()
     }
 
     private fun init() {
-        val colors = blockiesData.colors
-        colorPaint.color = colors[0]
-        backgroundPaint.color = colors[1]
-        spotPaint.color = colors[2]
+        colorPaint.color = blockiesData.color
+        backgroundPaint.color = blockiesData.bgColor
+        spotPaint.color = blockiesData.spotColor
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldw: Int, oldh: Int) {
@@ -176,6 +187,12 @@ class BlockiesIconView : View {
 
     fun setSeed(seed: String, size: Int) {
         blockiesData = BlockiesIconData(seed, size)
+        init()
+        invalidate()
+    }
+
+    fun setBlockiesIconData(blockiesIconData: BlockiesIconData) {
+        this.blockiesData = blockiesIconData
         init()
         invalidate()
     }

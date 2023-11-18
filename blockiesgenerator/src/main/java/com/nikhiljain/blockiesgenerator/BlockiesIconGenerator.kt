@@ -49,19 +49,19 @@ class BlockiesIconGenerator(
     private var imageData: IntArray = intArrayOf()
 
     init {
-        seedRand(seed.lowercase(Locale.getDefault()))
+        seedRand(seed)
         initialize(size)
     }
 
     private fun initialize(size: Int) {
         // create colors after seedRandom function
-        if (color == 0) {
+        if (color.isColorInvalid) {
             color = createColor()
         }
-        if (bgColor == 0) {
+        if (bgColor.isColorInvalid) {
             bgColor = createColor()
         }
-        if (spotColor == 0) {
+        if (spotColor.isColorInvalid) {
             spotColor = createColor()
         }
         colorPaint.color = color
@@ -172,4 +172,7 @@ class BlockiesIconGenerator(
         )
         canvas.drawRect(backgroundRect, backgroundPaint)
     }
+
+    private val @receiver:ColorInt Int.isColorInvalid: Boolean
+        get() = this == 0
 }

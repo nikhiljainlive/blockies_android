@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="BlockiesIdenticon">
-        <attr name="seed" format="string"/>
-        <attr name="radius" format="dimension"/>
-        <attr name="size" format="integer"/>
+    <declare-styleable name="BlockiesIconView">
+        <attr name="seed" format="string" />
+        <attr name="radius" format="dimension" />
+        <attr name="size" format="integer" />
+        <attr name="color" format="color" />
+        <attr name="bgColor" format="color" />
+        <attr name="spotColor" format="color" />
     </declare-styleable>
 </resources>

@@ -15,7 +15,12 @@ class BlockiesGeneratorViewHolder(
     override fun bind(blockiesViewsData: BlockiesViewsData) {
         itemBinding.apply {
             val iconGenerator = BlockiesIconGenerator(
-                seed = blockiesViewsData.address, size = 10, scale = 10
+                seed = blockiesViewsData.address,
+                size = 10,
+                scale = 10,
+                color = itemView.context.getColor(blockiesViewsData.color),
+                bgColor = itemView.context.getColor(blockiesViewsData.bgColor),
+                spotColor = itemView.context.getColor(blockiesViewsData.spotColor)
             )
             val context = itemView.context
             contactIcon.setImageBitmap(

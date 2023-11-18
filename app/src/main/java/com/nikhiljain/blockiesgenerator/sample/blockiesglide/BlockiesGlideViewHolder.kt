@@ -15,7 +15,12 @@ class BlockiesGlideViewHolder(
     override fun bind(blockiesViewsData: BlockiesViewsData) {
         itemBinding.apply {
             val blockiesData = BlockiesIconData(
-                seed = blockiesViewsData.address, size = 10, scale = 10
+                seed = blockiesViewsData.address,
+                size = 10,
+                scale = 10,
+                color = itemView.context.getColor(blockiesViewsData.color),
+                bgColor = itemView.context.getColor(blockiesViewsData.bgColor),
+                spotColor = itemView.context.getColor(blockiesViewsData.spotColor)
             )
             Glide.with(contactIcon)
                 .load(blockiesData)
