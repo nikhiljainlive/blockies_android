@@ -13,11 +13,16 @@ The `blockiesview` module offers a custom view for displaying blockies icons. Yo
 #### Usage
 
 ```xml
+<!-- app:color, app:bgColor, app:spotColor are optional -->
+
 <com.nikhiljain.blockiesview.BlockiesIconView
     android:layout_width="200dp"
     android:layout_height="200dp"
     app:seed="0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359"
-    app:size="10" />
+    app:size="10"
+    app:color="@android:color/holo_green_light"
+    app:bgColor="@android:color/holo_blue_light"
+    app:spotColor="@android:color/holo_orange_dark" />
 ```
 
 ### 2. blockiesgenerator
@@ -31,7 +36,14 @@ val imageView = ImageView(this)
 imageView.layoutParams = ViewGroup.LayoutParams(100, 100)
 
 // Create a BlockiesIconGenerator instance
-val iconGenerator = BlockiesIconGenerator(seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359", size = 10, scale = 10)
+val iconGenerator = BlockiesIconGenerator(
+    seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359",
+    size = 10,
+    scale = 10,
+    color = ContextCompat.getColor(context, android.R.color.holo_green_light),       // color will be generated as per the seed if not passed
+    bgColor = ContextCompat.getColor(context, android.R.color.holo_blue_bright),     // bgColor will be generated as per the seed if not passed
+    spotColor = ContextCompat.getColor(context, android.R.color.holo_orange_dark)    // spotColor will be generated as per the seed if not passed
+)
 
 // Generate the blockies icon bitmap
 val blockiesIconBitmap = iconGenerator.generateIconBitmap()
@@ -54,11 +66,13 @@ Glide.with(imageView)
         BlockiesIconData(
             seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359",
             size = 10,
-            scale = 10
+            color = android.R.color.holo_green_light,        // color will be generated as per the seed if not passed
+            bgColor = android.R.color.holo_blue_bright,      // bgColor will be generated as per the seed if not passed
+            spotColor = android.R.color.holo_orange_dark     // spotColor will be generated as per the seed if not passed
         )
     )
     .placeholder(R.drawable.ic_launcher_foreground)
-    .transform(RoundedCorners(90))
+    .circleCrop()
     .into(imageView)
 
 ```
@@ -67,22 +81,22 @@ The above code sample loads the bitmap from the BlockiesIconData object with the
 
 ## Getting Started
 
-To use this library in your Android project, you can include it as a dependency in your `build.gradle` file. Make sure you have JitPack as a repository in your project's `build.gradle` file.
+To use this library in your Android project, you need to include it as a dependency in your app module `build.gradle` file. Make sure you have JitPack as a repository in your project's `build.gradle` file.
 
 ```gradle
 dependencies {
     // BlockiesView dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.1.3'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.0'
 
     // BlockiesGenerator dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.1.3'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.0'
 
     // BlockiesGlide dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.1.3'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0'
 }
 ```
 
-And, in root project directory `build.gradle`:
+And, in root project directory's `build.gradle` file:
 
 ```gradle
 dependencyResolutionManagement {
@@ -98,7 +112,7 @@ For more information and advanced usage, refer to the project's samples.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md]() file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/nikhiljainlive/blockies_android/blob/main/LICENSE) file for details.
 
 ## Support or Contact
 
