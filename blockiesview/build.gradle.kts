@@ -9,7 +9,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 19
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -47,7 +47,7 @@ afterEvaluate {
             register("mavenJava", MavenPublication::class) {
                 groupId = "com.github.nikhiljainlive.blockies_android"
                 artifactId = "blockiesview"
-                version = "v0.1.2"
+                version = "v0.2.0"
 
                 from(components["release"])
             }

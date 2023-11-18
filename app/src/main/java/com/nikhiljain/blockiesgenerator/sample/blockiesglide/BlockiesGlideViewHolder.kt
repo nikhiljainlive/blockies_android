@@ -1,5 +1,6 @@
 package com.nikhiljain.blockiesgenerator.sample.blockiesglide
 
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.nikhiljain.blockiesgenerator.R
@@ -17,9 +18,9 @@ class BlockiesGlideViewHolder(
             val blockiesData = BlockiesIconData(
                 seed = blockiesViewsData.address,
                 size = 10,
-                color = itemView.context.getColor(blockiesViewsData.color),
-                bgColor = itemView.context.getColor(blockiesViewsData.bgColor),
-                spotColor = itemView.context.getColor(blockiesViewsData.spotColor)
+                color = ContextCompat.getColor(itemView.context, blockiesViewsData.color),
+                bgColor = ContextCompat.getColor(itemView.context, blockiesViewsData.bgColor),
+                spotColor = ContextCompat.getColor(itemView.context, blockiesViewsData.spotColor)
             )
             Glide.with(contactIcon)
                 .load(blockiesData)

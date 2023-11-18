@@ -10,7 +10,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 19
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -44,7 +44,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     // glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    compileOnly("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 }
 
@@ -54,7 +54,7 @@ afterEvaluate {
             register("mavenJava", MavenPublication::class) {
                 groupId = "com.github.nikhiljainlive.blockies_android"
                 artifactId = "blockiesglide"
-                version = "v0.1.2"
+                version = "v0.2.0"
 
                 from(components["release"])
             }

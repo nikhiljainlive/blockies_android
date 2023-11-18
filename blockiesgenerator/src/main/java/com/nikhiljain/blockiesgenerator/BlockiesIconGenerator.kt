@@ -6,7 +6,6 @@ import android.graphics.Paint
 import android.graphics.RectF
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
-import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.ceil
 import kotlin.math.floor
