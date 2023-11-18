@@ -40,9 +40,6 @@ android {
 }
 
 dependencies {
-    implementation(project("path" to ":blockiesview"))
-    implementation(project("path" to ":blockiesgenerator"))
-    implementation(project("path" to ":blockiesglide"))
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -53,6 +50,15 @@ dependencies {
 
     // for API 20 or lower
     implementation("androidx.multidex:multidex:2.0.1")
+
+    // BlockiesView dependency
+    implementation("com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.0")
+
+    // BlockiesGenerator dependency
+    implementation("com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.0")
+
+    // BlockiesGlide dependency
+    implementation("com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
