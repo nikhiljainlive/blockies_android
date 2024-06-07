@@ -54,7 +54,14 @@ imageView.setImageBitmap(blockiesIconBitmap)
 
 ### 3. blockiesglide
 
-The `blockiesglide` module requires [Glide](https://github.com/bumptech/glide) library as dependency. This module injects `BlockiesGlideModule` custom Glide module and loads the bitmap image from the `BlockiesIconData` object.
+The `blockiesglide` module requires [Glide](https://github.com/bumptech/glide) library as dependency. `BlockiesGlideModule` library Glide module is responsible for registering the necessary components and loads the bitmap image from the `BlockiesIconData` object.
+
+For this, you need to add a class which extends AppGlideModule in your application module. See more here - [Glide - Configuration](https://bumptech.github.io/glide/doc/configuration.html#applications)
+
+```kotlin
+@GlideModule
+class YourAppModule : AppGlideModule()
+```
 
 #### Usage
 
@@ -86,13 +93,13 @@ To use this library in your Android project, you need to include it as a depende
 ```gradle
 dependencies {
     // BlockiesView dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.0'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.1'
 
     // BlockiesGenerator dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.0'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.1'
 
     // BlockiesGlide dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.1'
 }
 ```
 

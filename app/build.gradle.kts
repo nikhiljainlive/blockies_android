@@ -52,15 +52,13 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
 
     // BlockiesView dependency
-    implementation("com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.0")
+    implementation("com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.1")
 
     // BlockiesGenerator dependency
-    implementation("com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.0")
+    implementation("com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.1")
 
     // BlockiesGlide dependency
-//    implementation("com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0")
-    // TODO :: update to latest dependency
-    implementation(project(":blockiesglide"))
+    implementation("com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
