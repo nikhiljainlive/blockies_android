@@ -54,7 +54,7 @@ afterEvaluate {
             register("mavenJava", MavenPublication::class) {
                 groupId = "com.github.nikhiljainlive.blockies_android"
                 artifactId = "blockiesglide"
-                version = "v0.2.0"
+                version = "v0.2.1"
 
                 from(components["release"])
             }
