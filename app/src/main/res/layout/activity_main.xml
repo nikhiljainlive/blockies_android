@@ -33,9 +33,23 @@
     <com.nikhiljain.blockiesview.BlockiesIconView
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
         app:bgColor="@android:color/holo_blue_light"
         app:color="@android:color/holo_green_light"
         app:seed="0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359"
         app:size="10"
         app:spotColor="@android:color/holo_orange_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Blockies Glide"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageview_glide"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
 </LinearLayout>
