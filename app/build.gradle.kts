@@ -58,7 +58,9 @@ dependencies {
     implementation("com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.0")
 
     // BlockiesGlide dependency
-    implementation("com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0")
+//    implementation("com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0")
+    // TODO :: update to latest dependency
+    implementation(project(":blockiesglide"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
