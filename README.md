@@ -93,13 +93,13 @@ To use this library in your Android project, you need to include it as a depende
 ```gradle
 dependencies {
     // BlockiesView dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.0'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesview:v0.2.1'
 
     // BlockiesGenerator dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.0'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesgenerator:v0.2.1'
 
     // BlockiesGlide dependency
-    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.0'
+    implementation 'com.github.nikhiljainlive.blockies_android:blockiesglide:v0.2.1'
 }
 ```
 
