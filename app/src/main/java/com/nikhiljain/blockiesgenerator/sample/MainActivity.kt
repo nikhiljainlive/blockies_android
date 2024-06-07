@@ -6,9 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.updatePadding
+import com.bumptech.glide.Glide
 import com.nikhiljain.blockiesgenerator.BlockiesIconGenerator
 import com.nikhiljain.blockiesgenerator.databinding.ActivityMainBinding
+import com.nikhiljain.blockiesglide.entity.BlockiesIconData
 import com.nikhiljain.blockiesview.BlockiesIconView
 
 class MainActivity : AppCompatActivity() {
@@ -66,5 +69,24 @@ class MainActivity : AppCompatActivity() {
                 }, 2
             )
         }
+        Glide.with(binding.imageviewGlide)
+            .load(
+                BlockiesIconData(
+                    seed = "0xfb6916095ca1df60bb79ce92ce3ea74c37c5d359",
+                    size = 10,
+                    color = ContextCompat.getColor(
+                        this,
+                        android.R.color.holo_green_light
+                    ),
+                    bgColor = ContextCompat.getColor(
+                        this,
+                        android.R.color.holo_blue_light
+                    ),
+                    spotColor = ContextCompat.getColor(
+                        this,
+                        android.R.color.holo_orange_dark
+                    )
+                )
+            ).into(binding.imageviewGlide)
     }
 }
